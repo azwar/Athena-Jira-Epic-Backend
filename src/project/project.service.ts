@@ -49,6 +49,17 @@ export class ProjectService {
     return this.projectModel.find().exec();
   }
 
+  async findAllByFilter(
+    creatorId: string,
+    workspaceId: string,
+  ): Promise<Project[]> {
+    return this.projectModel
+      .find({
+        $or: [{ creator: creatorId }, { workspaceId: workspaceId }],
+      })
+      .exec();
+  }
+
   async findAllJirasEpic(): Promise<IEpic[]> {
     const url = BASE_URL_JIRA + SUB_URL_JIRA_EPiC;
     const headersRequest = {

@@ -1,5 +1,4 @@
 import { IsEmail, IsNotEmpty, IsString, MaxLength } from 'class-validator';
-import { ObjectId } from 'mongoose';
 
 export class CreateUserDto {
   @IsString()

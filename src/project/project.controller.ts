@@ -25,12 +25,12 @@ export class ProjectController {
     return this.projectService.create(createProjectDto);
   }
 
-  @Get()
+  @Get('filter')
   @UseGuards(AuthGuard('jwt'))
   async findAllByFilter(
-    @Query('owner') ownerId: string,
+    @Query('creator') creatorId: string,
     @Query('workspace') workspaceId: string,
   ) {
-    // TODO: return this.projectService.findAllByOwner();
+    return this.projectService.findAllByFilter(creatorId, workspaceId);
   }
 }
